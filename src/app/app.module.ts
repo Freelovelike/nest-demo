@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
+import { AppEntity } from './app.entity';
 import { AppService } from './app.service';
 
 @Module({
@@ -12,9 +13,10 @@ import { AppService } from './app.service';
       database: 'nest',
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      entities: [__dirname + '../**/*.entity{.ts,.js}'],
+      entities: ['/*.entity{.ts,.js}'],
       synchronize: true,
     }),
+    TypeOrmModule.forFeature([AppEntity]),
   ],
   controllers: [AppController],
   providers: [AppService],
